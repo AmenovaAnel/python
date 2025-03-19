@@ -16,7 +16,7 @@ if os.path.exists(icon_path):
 music_folder = r"C:\Users\USER\Desktop\mumu"
 playlist = [
     "Zdravstvujj_nebo_v_oblakakh_Zdravstvujj_yunost_v_sapogakh_Propadi_moya_toska_Vot_on_ya_privet_vojjska_JEkh_relsy_poezda_Kak_ya_popal_syuda_Zdes_ne_t_-_Soldaty_75735308.mp3",
-    "C:\Users\USER\Desktop\mumu\lololoshka-golos-vremeni-vernyj-put.mp3"
+    "lololoshka-golos-vremeni-vernyj-put.mp3"
 ]
 
 
