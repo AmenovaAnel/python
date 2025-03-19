@@ -7,7 +7,7 @@ s_w, s_h = 600, 600
 screen = pygame.display.set_mode((s_w, s_h), pygame.RESIZABLE)
 pygame.display.set_caption("WorldwileMusic")
 
-icon_path = r"C:\Users\USER\Desktop\images.jpeg"
+icon_path = r"C:\Users\USER\Downloads\redball.png"
 if os.path.exists(icon_path):
     icon_image = pygame.image.load(icon_path)
     pygame.display.set_icon(icon_image)
