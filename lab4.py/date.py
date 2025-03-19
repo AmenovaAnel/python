@@ -1,12 +1,10 @@
 #1
 
-from datetime import date, timedelta  
+import datetime
 
-current_date = date.today()  
-date_before_5_days = current_date - timedelta(days=5)  
+x = datetime.datetime.now() - datetime.timedelta(days=5)
 
-print("Current date:", current_date)  
-print("Date 5 days ago:", date_before_5_days)  
+print(x) 
 
 
 #2
