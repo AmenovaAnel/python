@@ -142,7 +142,7 @@ while running:
     clock.tick(fps)
 
 
-# **Экран завершения игры (остается открытым, пока игрок не нажмет кнопку)**
+
 game_over_screen = True
 
 while game_over_screen:
