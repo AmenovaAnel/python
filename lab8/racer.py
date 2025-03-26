@@ -25,6 +25,14 @@ background = pygame.transform.scale(background, WINDOW_SIZE)
 
 pygame.display.set_caption('CARs')  
 
+# Музыка
+pygame.mixer.init()
+pygame.mixer.music.load(r"C:\Users\USER\Downloads\c93bdf8c4c82d599.mp3")  # Фоновая музыка
+pygame.mixer.music.play(-1)  # Бесконечный повтор
+
+crash_sound = pygame.mixer.Sound(r"C:\Users\USER\Downloads\LAB 8_Lab8_racer_crash.wav")  # Звук аварии
+
+
 class Coin(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -136,11 +144,12 @@ while running:
         generate_new_coin()
 
     if pygame.sprite.spritecollideany(player, enemies):
+        pygame.mixer.music.stop()  # Останавливаем фоновую музыку
+        crash_sound.play()  # Проигрываем звук аварии
         running = False  
 
     pygame.display.update()
     clock.tick(fps)
-
 
 
 game_over_screen = True
