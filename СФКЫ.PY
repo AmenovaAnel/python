@@ -1,4 +1,6 @@
+import math
 import random
+import time
 import pygame
 
 clock = pygame.time.Clock()
@@ -18,18 +20,22 @@ screen = pygame.display.set_mode(WINDOW_SIZE)
 
 font = pygame.font.SysFont('Verdana', 63)  
 font_small = pygame.font.SysFont('Verdana', 18) 
-game_over_text_label = font.render('Game Over!', True, WHITE)  
+game_over_text_label = font.render('Game over!', True, WHITE)  
 
+# Загружаем фон
 background = pygame.image.load(r"C:\Users\USER\Downloads\road.png")  
-background = pygame.transform.scale(background, WINDOW_SIZE)  
+background = pygame.transform.scale(background, WINDOW_SIZE)  # Масштабируем под размер окна
 
 pygame.display.set_caption('CARs')  
+
+game_over = False
+
 
 class Coin(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         original_image = pygame.image.load(r"C:\Users\USER\Downloads\coin.jpg")  
-        self.image = pygame.transform.scale(original_image, (40, 40))  
+        self.image = pygame.transform.scale(original_image, (40, 40))  # Размер монеты 40x40 пикселей
         self.rect = self.image.get_rect()
         self.set_random_position()
 
@@ -50,7 +56,7 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         original_image = pygame.image.load(r"C:\Users\USER\Downloads\rred.webp")  
-        self.image = pygame.transform.scale(original_image, (50, 100))  
+        self.image = pygame.transform.scale(original_image, (50, 100))  # Размер вражеской машины 50x100 пикселей
         self.rect = self.image.get_rect()
         self.set_random_position()
 
@@ -74,9 +80,9 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         original_image = pygame.image.load(r"C:\Users\USER\Downloads\blue.webp")  
-        self.image = pygame.transform.scale(original_image, (50, 100))  
+        self.image = pygame.transform.scale(original_image, (50, 100))  # Размер машины игрока 50x100 пикселей
         self.rect = self.image.get_rect()
-        self.rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT - 100)
+        self.rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT - 50)
 
     def move(self):
         pressed_keys = pygame.key.get_pressed()
@@ -96,15 +102,21 @@ player = Player()
 enemy = Enemy()
 coin = Coin()
 
-all_sprites = pygame.sprite.Group(player, enemy, coin)
-enemies = pygame.sprite.Group(enemy)
-coins = pygame.sprite.Group(coin)
+all_sprites = pygame.sprite.Group()
+all_sprites.add(player)
+all_sprites.add(enemy)
+all_sprites.add(coin)
+
+enemies = pygame.sprite.Group()
+enemies.add(enemy)
+
+coins = pygame.sprite.Group()
+coins.add(coin)
 
 INC_SPEED = pygame.USEREVENT + 1
 pygame.time.set_timer(INC_SPEED, 4000)
 
 captured_coins = 0
-running = True
 
 
 def generate_new_coin():
@@ -114,14 +126,15 @@ def generate_new_coin():
     all_sprites.add(coin)
 
 
-while running:
+while not game_over:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            game_over = True
         if event.type == INC_SPEED:
             SPEED += 0.5
 
     screen.blit(background, (0, 0))
+
     screen.blit(font_small.render(f'Score: {SCORE}', True, BLUE), (293, 10))
     screen.blit(font_small.render(f'Coins: {captured_coins}', True, BLUE), (293, 30))
 
@@ -136,30 +149,23 @@ while running:
         generate_new_coin()
 
     if pygame.sprite.spritecollideany(player, enemies):
-        running = False  
+        time.sleep(1)
+
+        screen.fill((69, 172, 116))
+        screen.blit(game_over_text_label, (12, 190))
+        screen.blit(font_small.render(f'Your score: {SCORE}', True, WHITE), (15, 270))
+        screen.blit(font_small.render(f'Captured coins: {captured_coins}', True, WHITE), (15, 290))
+
+        pygame.display.update()
+
+        for sprite in all_sprites:
+            sprite.kill()
+
+        time.sleep(7)
+
+        game_over = True  
 
     pygame.display.update()
     clock.tick(fps)
-
-
-# **Экран завершения игры (остается открытым, пока игрок не нажмет кнопку)**
-game_over_screen = True
-
-while game_over_screen:
-    screen.fill((69, 172, 116))
-    screen.blit(game_over_text_label, (12, 190))
-    screen.blit(font_small.render(f'Your score: {SCORE}', True, WHITE), (15, 270))
-    screen.blit(font_small.render(f'Captured coins: {captured_coins}', True, WHITE), (15, 290))
-    screen.blit(font_small.render('Press ESC or ENTER to exit', True, WHITE), (15, 350))
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game_over_screen = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE or event.key == pygame.K_RETURN:
-                game_over_screen = False
-
-    pygame.display.update()
-    clock.tick(30)
 
 pygame.quit()
