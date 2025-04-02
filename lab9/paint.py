@@ -9,11 +9,11 @@ running = True  # Переменная для управления циклом 
 WINDOW_SIZE = (WINDOW_WIDTH, WINDOW_HEIGHT) = (1000, 600)
 
 # Определяем цвета в формате (R, G, B)
-RED = (255, 0, 0)  # Красный
-WHITE = (255, 255, 255)  # Белый
-GREEN = (0, 255, 0)  # Зелёный
-BLUE = (0, 0, 255)  # Синий
-BLACK = (0, 0, 0)  # Чёрный
+RED = (255, 0, 0)  
+WHITE = (255, 255, 255) 
+GREEN = (0, 255, 0)  
+BLUE = (0, 0, 255)  
+BLACK = (0, 0, 0) 
 
 # Создаём окно размером 1000x600 пикселей
 screen = pygame.display.set_mode(WINDOW_SIZE)

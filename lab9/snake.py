@@ -163,15 +163,20 @@ walls = []
 color_of_wall = generate_random_color() 
 
 
-def over_the_game(): 
+def over_the_game():
     global game_over
     SCREEN.fill((69, 172, 116))
     SCREEN.blit(font.render('GAME OVER', True, WHITE), (30, 170))
     SCREEN.blit(font_small.render(f'Score: {SCORE}', True, WHITE), (32, 250))
     SCREEN.blit(font_small.render(f'Level: {LEVEL}', True, WHITE), (32, 275))
     pygame.display.update()
-    time.sleep(6)
-    game_over = True
+
+    while True:  # Ждем, пока пользователь закроет окно
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game_over = True
+                return
+
 
 
 for pos in POSITIONS_OF_THE_WALL: 
