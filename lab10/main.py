@@ -3,10 +3,10 @@ import csv
 
 # Подключение к БД
 conn = psycopg2.connect(
-    host="localhost",
-    database="your_db_name",
-    user="your_username",
-    password="your_password"
+   host="localhost",
+   database="userbot",
+   user="postgres",
+   password="051221"
 )
 cur = conn.cursor()
 
