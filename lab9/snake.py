@@ -171,7 +171,7 @@ def over_the_game():
     SCREEN.blit(font_small.render(f'Level: {LEVEL}', True, WHITE), (32, 275))
     pygame.display.update()
 
-    while True:  # Ждем, пока пользователь закроет окно
+    while True:  # Ждем, пока я сама закрою окно
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True

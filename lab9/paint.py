@@ -14,6 +14,7 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)  
 BLUE = (0, 0, 255)  
 BLACK = (0, 0, 0) 
+RANDOM = (234, 0, 0)
 
 # Создаём окно размером 1000x600 пикселей
 screen = pygame.display.set_mode(WINDOW_SIZE)
@@ -74,6 +75,9 @@ while running:
                 color = GREEN
             if alt_pressed and pressed[pygame.K_q]:  # Смена цвета на чёрный
                 color = BLACK
+            if alt_pressed and pressed[pygame.K_o]:  # Смена цвета на чёрный
+                color = RANDOM
+        
 
             # Смена режима рисования по комбинации Ctrl + клавиша
             if ctrl_pressed and pressed[pygame.K_c]:  # Рисование круга

@@ -26,7 +26,6 @@ N = 5  # Количество монет для увеличения скоро�
 background = pygame.image.load(r"C:\Users\USER\Downloads\road.png")
 background = pygame.transform.scale(background, WINDOW_SIZE)
 
-# Загрузка звуков
 pygame.mixer.init()
 pygame.mixer.music.load(r"C:\Users\USER\Downloads\c93bdf8c4c82d599.mp3")
 pygame.mixer.music.play(-1)

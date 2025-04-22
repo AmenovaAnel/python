@@ -27,7 +27,7 @@ while not done:
             done = True
     
     time_now = time.localtime()
-    second = -(time_now.tm_sec / 60) * 360
+    second = -(time_now.tm_sec / 60) * 360 
     minute = -(((time_now.tm_min + time_now.tm_sec / 60) / 60) * 360)
 
     left_hand = pygame.transform.rotate(left, second)
