@@ -191,8 +191,6 @@ def over_the_game():
                 game_over = True
                 return
 
-
-
 for pos in POSITIONS_OF_THE_WALL: 
     w = Wall(_position=pos, _length=random.randint(5, 7), _color=color_of_wall)
     w.construct()

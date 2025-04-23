@@ -3,7 +3,7 @@ import psycopg2
 def delete_data(count):
     # Подключаемся к базе данных один раз
     try:
-        with psycopg2.connect(host="localhost", database="postgres", user="postgres", password="12345") as conn:
+        with psycopg2.connect(host="localhost", database="userbot", user="postgres", password="051221") as conn:
             with conn.cursor() as cur:
                 for _ in range(count):
                     # Запрашиваем имя и номер в одном блоке

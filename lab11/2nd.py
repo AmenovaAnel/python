@@ -10,7 +10,7 @@ def delete_data(name=None, number=None):
     
     try:
         # Открываем соединение с базой данных
-        with psycopg2.connect(host="localhost", database="postgres", user="postgres", password="12345") as conn:
+        with psycopg2.connect(host="localhost", database="userbot", user="postgres", password="051221") as conn:
             with conn.cursor() as cur:
                 # Выполняем команду удаления
                 cur.execute(command, (name, number))
